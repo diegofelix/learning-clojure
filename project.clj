@@ -3,4 +3,5 @@
   :url "http://github.com/diegofelix/learning-clojure"
   :license {:name "Creative Commons Attribution Share-Alike 4.0 International"
             :url "https://creativecommons.org"}
-  :dependencies [[org.clojure/clojure "1.8.0"]])
+  :dependencies [[org.clojure/clojure "1.8.0"]
+                 [ring "1.7.1"]])
