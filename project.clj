@@ -9,4 +9,7 @@
   ;; This code will call a function called `-main` on core as soon as
   ;; we call `lein run`.
   ;; Useful when we want to run the code automatically.
-  :main learning-clojure.core)
+  :main learning-clojure.core
+
+  :profiles {:dev
+  		{:main learning-clojure.core/-dev-main}})
