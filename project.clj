@@ -4,7 +4,8 @@
   :license {:name "Creative Commons Attribution Share-Alike 4.0 International"
             :url "https://creativecommons.org"}
   :dependencies [[org.clojure/clojure "1.8.0"]
-                 [ring "1.7.1"]]
+                 [ring "1.7.1"]
+                 [compojure "1.3.4"]]
 
   ;; This code will call a function called `-main` on core as soon as
   ;; we call `lein run`.
