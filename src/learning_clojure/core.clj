@@ -7,11 +7,16 @@
 (defn welcome
   "A ring handler to process all requests sent to webapp"
   [request]
-  {:status 200
-   :body "<h1>Hello, Clojure World</h1>
-   <p>Welcome to our first Clojure app.
-   This message is returned regardless of the request, sorry</p>"
-   :headers {}})
+  (if (= "/" (:uri request))
+    {:status 200
+     :body "<h1>Hello, Clojure World</h1>
+     <p>Welcome to our first Clojure app.
+     This message is returned regardless of the request, sorry</p>"
+     :headers {}}
+    {:status 404
+     :body "<h1>This is not the page you are looking for</h1>
+     <p>Sorry, the page you requested was not found!></p>"
+     :headers {}}))
 
 ;; Using a - at the start of the -main function is a naming convention,
 ;; helping you see which function is the entry point to your program.
