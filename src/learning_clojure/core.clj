@@ -12,13 +12,25 @@
   [request]
   {:status 200
    :body "<h1>Hello, Clojure World</h1>
-   <p>I now use defroutes to manage incoming requests</p>"
+          <p>I now use defroutes to manage incoming requests</p>"
+   :headers {}})
+
+(defn goodbye
+  "A song to wish you goodbye"
+  [request]
+  {:status 200
+   :body "<h1>Walking back to happiness</h1>
+          <p>Walking back to happiness with you</p>
+          <p>Said, Farewell to loneliness I knew</p>
+          <p>Laid aside foolish pride</p>
+          <p>Learnt the truth from tears I cried</p>"
    :headers {}})
 
 (defroutes app
   (GET "/" [] welcome)
+  (GET "/goodbye" [] goodbye)
   (not-found "<h1>This is not the page you are looking for</h1>
-    <p>Sorry, the page you requested was not found!</p>"))
+              <p>Sorry, the page you requested was not found!</p>"))
 
 ;; Using a - at the start of the -main function is a naming convention,
 ;; helping you see which function is the entry point to your program.
