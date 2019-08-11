@@ -34,11 +34,25 @@
    :body "<h1>I am an awesome clojure developer!</h1>"
    :headers {}})
 
+(defn hello
+  "Say hello to someone using the request path parameter"
+  [request]
+  ;; get from the request (inside the :route-parameters the key :name)
+  (let [name (get-in request [:route-params :name])]
+  ;; instead of using get-in, I can also use:
+  ;;   (let [name (:name (:route-params request))]
+  ;;   or (let [name ((request :route-params) :name)]
+  ;; does't matter the param order inside the parentesis.
+    {:status 200
+     :body (str "Hello " name " I'm getting your name from the url.")
+     :headers {}}))
+
 (defroutes app
   (GET "/" [] welcome)
   (GET "/goodbye" [] goodbye)
   (GET "/about" [] about)
   (GET "/request-info" [] handle-dump)
+  (GET "/hello/:name" [] hello)
   (not-found "<h1>This is not the page you are looking for</h1>
               <p>Sorry, the page you requested was not found!</p>"))
 
