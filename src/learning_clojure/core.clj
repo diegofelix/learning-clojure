@@ -16,6 +16,8 @@
           <p>I now use defroutes to manage incoming requests</p>"
    :headers {}})
 
+(def operands {"+" + "-" - "*" * ":" /})
+
 (defn goodbye
   "A song to wish you goodbye"
   [request]
@@ -47,12 +49,28 @@
      :body (str "Hello " name " I'm getting your name from the url.")
      :headers {}}))
 
+(defn calculator
+  "A simple calculator using route parameters"
+  [request]
+  (let [a (Integer. (get-in request [:route-params :a]))
+         b (Integer. (get-in request [:route-params :b]))
+         operation (get-in request [:route-params :op])
+         f (get operands operation)]
+    (if f
+      {:status 200
+       :body (str "Calculated result: " (f a b))
+       :headers {}}
+      {:status 404
+       :body "Sorry, unknown operator. I only recognize + - * : (: is for division)"
+       :headers {}})))
+
 (defroutes app
   (GET "/" [] welcome)
   (GET "/goodbye" [] goodbye)
   (GET "/about" [] about)
   (GET "/request-info" [] handle-dump)
   (GET "/hello/:name" [] hello)
+  (GET "/calculator/:op/:a/:b" [] calculator)
   (not-found "<h1>This is not the page you are looking for</h1>
               <p>Sorry, the page you requested was not found!</p>"))
 
