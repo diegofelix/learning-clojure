@@ -26,9 +26,17 @@
           <p>Learnt the truth from tears I cried</p>"
    :headers {}})
 
+(defn about
+  "Information about the website developer"
+  [request]
+  {:status 200
+   :body "<h1>I am an awesome clojure developer!</h1>"
+   :headers {}})
+
 (defroutes app
   (GET "/" [] welcome)
   (GET "/goodbye" [] goodbye)
+  (GET "/about" [] about)
   (not-found "<h1>This is not the page you are looking for</h1>
               <p>Sorry, the page you requested was not found!</p>"))
 
